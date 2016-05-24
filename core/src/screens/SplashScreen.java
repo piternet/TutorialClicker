@@ -1,6 +1,7 @@
 package screens;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Timer;
 import net.nosek.tutorialclicker.TutorialClickerGame;
 
 /**
@@ -10,9 +11,16 @@ public class SplashScreen extends AbstractScreen {
 
     private Texture splashImage;
 
-    public SplashScreen(TutorialClickerGame game) {
+    public SplashScreen(final TutorialClickerGame game) {
         super(game);
         init();
+
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                game.setScreen(new GameplayScreen(game));
+            }
+        }, 2);
     }
 
     private void init() {
